@@ -37,7 +37,13 @@
         }];
         
         
-        [context evaluateScript:@"\"use strict\"; var global = this; if ( !log ) var log = console.log; Object.keys( global ).forEach( function( k ) { log( 'Type of global.' + k + ' is ' + ( typeof this ) + ', global.' + k + '.valueOf()=' + this.valueOf() + ', global.' + k + '.toString()=' + this.toString() );} ); log( '[' + new Date + '] Calling wait1s...' ); wait1s( 'Hello!' ); log( '[' + new Date + '] Called wait1s...' );"];
+        NSString* filePath = [[NSBundle mainBundle] pathForResource:@"envTest" ofType:@"js" inDirectory:@""];
+
+        NSString * jsCode = [NSString stringWithContentsOfFile: filePath
+                                                      encoding:NSUTF8StringEncoding
+                                                         error:nil];
+        
+        [context evaluateScript: jsCode ];
         
         // This needs to get nil'd before deallocation
         context.exception = nil;
