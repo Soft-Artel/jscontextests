@@ -17,6 +17,34 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    @autoreleasepool {
+        JSContext *context = [[JSContext alloc] initWithVirtualMachine:[[JSVirtualMachine alloc] init]];
+        
+        context[@"log"] = ^(NSString *message) {
+            NSLog(@"Javascript log: %@",message);
+        };
+        
+        context[@"wait1s"] = ^(NSString *message) {
+            NSLog(@"wait1s start");
+            sleep( 1 );
+            NSLog(@"wait1s end: %@",message);
+        };
+        
+        [context setExceptionHandler:^(JSContext *context, JSValue *value) {
+            NSLog(@"%@", value);
+        }];
+        
+        
+        [context evaluateScript:@"\"use strict\"; var global = this; if ( !log ) var log = console.log; Object.keys( global ).forEach( function( k ) { log( 'Type of global.' + k + ' is ' + ( typeof this ) + ', global.' + k + '.valueOf()=' + this.valueOf() + ', global.' + k + '.toString()=' + this.toString() );} ); log( '[' + new Date + '] Calling wait1s...' ); wait1s( 'Hello!' ); log( '[' + new Date + '] Called wait1s...' );"];
+        
+        // This needs to get nil'd before deallocation
+        context.exception = nil;
+    }
+    
+    
+    
     return YES;
 }
 
