@@ -26,25 +26,39 @@
             NSLog(@"Javascript log: %@",message);
         };
         
-        context[@"wait1s"] = ^(NSString *message) {
-            NSLog(@"wait1s start");
+        context[@"modelQuery"] = ^(NSString *query) {
+            NSLog(@"modelQuery start with query: %@",query);
             sleep( 1 );
-            NSLog(@"wait1s end: %@",message);
+            NSString *someModelResult = @"{\"result\":123}";
+            NSLog(@"modelQuery end: %@",query);
+            return someModelResult;
         };
-        
+
+        context[@"sendResult"] = ^(NSString *result) {
+            NSLog(@"sendResult with args: %@",result);
+        };
+
         [context setExceptionHandler:^(JSContext *context, JSValue *value) {
             NSLog(@"%@", value);
         }];
         
         
-        NSString* filePath = [[NSBundle mainBundle] pathForResource:@"envTest" ofType:@"js" inDirectory:@""];
+        // NSString* filePath = [[NSBundle mainBundle] pathForResource:@"envTest" ofType:@"js" inDirectory:@""];
+        NSString* filePath = [[NSBundle mainBundle] pathForResource:@"smartDate-v2.1.0.dev-ios-ru" ofType:@"js" inDirectory:@""];
 
         NSString * jsCode = [NSString stringWithContentsOfFile: filePath
                                                       encoding:NSUTF8StringEncoding
                                                          error:nil];
         
         [context evaluateScript: jsCode ];
+
+        // sleep( 1 );
         
+        NSLog(@"Calling parseText(...)");
+        
+        [context evaluateScript:@"parseText(\"Завтра 10 совещание\");"];
+        
+
         // This needs to get nil'd before deallocation
         context.exception = nil;
     }

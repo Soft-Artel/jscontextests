@@ -16,6 +16,7 @@
 		33C69AB21AFB98A800CBA965 /* jscontextestsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 33C69AB11AFB98A800CBA965 /* jscontextestsTests.m */; };
 		33C69ABC1AFB98CD00CBA965 /* envTest.js in Resources */ = {isa = PBXBuildFile; fileRef = 33C69ABB1AFB98CD00CBA965 /* envTest.js */; };
 		33C69ABE1AFB99FA00CBA965 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33C69ABD1AFB99FA00CBA965 /* JavaScriptCore.framework */; };
+		F522055C1B053DB3005AB8AB /* smartDate-v2.1.0.dev-ios-ru.js in Resources */ = {isa = PBXBuildFile; fileRef = F522055B1B053DB3005AB8AB /* smartDate-v2.1.0.dev-ios-ru.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		33C69AB11AFB98A800CBA965 /* jscontextestsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jscontextestsTests.m; sourceTree = "<group>"; };
 		33C69ABB1AFB98CD00CBA965 /* envTest.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = envTest.js; sourceTree = "<group>"; };
 		33C69ABD1AFB99FA00CBA965 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F522055B1B053DB3005AB8AB /* smartDate-v2.1.0.dev-ios-ru.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "smartDate-v2.1.0.dev-ios-ru.js"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		33C69A891AFB98A800CBA965 = {
 			isa = PBXGroup;
 			children = (
+				F522055B1B053DB3005AB8AB /* smartDate-v2.1.0.dev-ios-ru.js */,
 				33C69ABD1AFB99FA00CBA965 /* JavaScriptCore.framework */,
 				33C69ABB1AFB98CD00CBA965 /* envTest.js */,
 				33C69A941AFB98A800CBA965 /* jscontextests */,
@@ -208,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33C69AA11AFB98A800CBA965 /* Main.storyboard in Resources */,
+				F522055C1B053DB3005AB8AB /* smartDate-v2.1.0.dev-ios-ru.js in Resources */,
 				33C69AA61AFB98A800CBA965 /* LaunchScreen.xib in Resources */,
 				33C69ABC1AFB98CD00CBA965 /* envTest.js in Resources */,
 				33C69AA31AFB98A800CBA965 /* Images.xcassets in Resources */,
