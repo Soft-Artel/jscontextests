@@ -37,5 +37,5 @@
 	/*
 	 * @file ios.js
 	 */
-	var self=this;this.parseText=function(text,options){options||(options={}),self.modelQuery&&(options.model=function(query,callback){callback(self.modelQuery(query))}),smartDateParse(text,options,function(err,res){self.sendResult(JSON.stringify(err?"":res||{}))})};
+	var self=this;this.parseText=function(text,options){options||(options={}),self.modelQuery&&(options.model=function(query,callback){callback(self.modelQuery(query))}),smartDateParse(text,options,function(err,res){self.sendResult(+err,res||{})})};
 } ).call( this );

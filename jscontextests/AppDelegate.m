@@ -19,7 +19,6 @@
     // Override point for customization after application launch.
     
     
-    @autoreleasepool {
         JSContext *context = [[JSContext alloc] initWithVirtualMachine:[[JSVirtualMachine alloc] init]];
         
         [context evaluateScript:@"var console = {};"];
@@ -38,9 +37,9 @@
 
         __block __weak AppDelegate * safeSelf = self;
         
-        context[@"sendResult"] = ^(NSString *result) {
+        context[@"sendResult"] = ^(NSInteger error, NSArray *result) {
             // self.res = [result copy];
-            NSLog(@"sendResult with args: %@", result );
+            NSLog(@"sendResult with args: %i %@", error, result );
         };
 
         [context setExceptionHandler:^(JSContext *context, JSValue *value) {
@@ -65,7 +64,6 @@
 
         // This needs to get nil'd before deallocation
         context.exception = nil;
-    }
     
     
     
