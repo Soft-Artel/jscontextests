@@ -22,8 +22,9 @@
     @autoreleasepool {
         JSContext *context = [[JSContext alloc] initWithVirtualMachine:[[JSVirtualMachine alloc] init]];
         
-        context[@"log"] = ^(NSString *message) {
-            NSLog(@"Javascript log: %@",message);
+        [context evaluateScript:@"var console = {};"];
+        context[@"console"][@"log"] = ^(NSString *message) {
+            NSLog(@"JavaScript console: %@",message);
         };
         
         context[@"modelQuery"] = ^(NSString *query) {
@@ -33,29 +34,32 @@
             NSLog(@"modelQuery end: %@",query);
             return someModelResult;
         };
+        
 
+        __block __weak AppDelegate * safeSelf = self;
+        
         context[@"sendResult"] = ^(NSString *result) {
-            NSLog(@"sendResult with args: %@",result);
+            // self.res = [result copy];
+            NSLog(@"sendResult with args: %@", result );
         };
 
         [context setExceptionHandler:^(JSContext *context, JSValue *value) {
-            NSLog(@"%@", value);
+            NSLog(@"JavaScript exception: %@", value);
         }];
         
         
-        // NSString* filePath = [[NSBundle mainBundle] pathForResource:@"envTest" ofType:@"js" inDirectory:@""];
-        NSString* filePath = [[NSBundle mainBundle] pathForResource:@"smartDate-v2.1.0.dev-ios-ru" ofType:@"js" inDirectory:@""];
+        // NSString* filePath = [[NSBundle mainBundle] pathForResource:@"test-smartDate-ios-ru" ofType:@"js" inDirectory:@""];
+        
+        NSString* filePath = [[NSBundle mainBundle] pathForResource:@"smartDate-ios-ru" ofType:@"js" inDirectory:@""];
 
         NSString * jsCode = [NSString stringWithContentsOfFile: filePath
                                                       encoding:NSUTF8StringEncoding
-                                                         error:nil];
-        
+                                                        error:nil];
+        // NSLog(@"Start tests...");
+
         [context evaluateScript: jsCode ];
 
-        // sleep( 1 );
-        
         NSLog(@"Calling parseText(...)");
-        
         [context evaluateScript:@"parseText(\"Завтра 10 совещание\");"];
         
 
